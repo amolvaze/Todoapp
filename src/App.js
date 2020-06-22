@@ -1,3 +1,7 @@
+// Code by Amol Vaze on 22 June 2020
+
+// Sample to do app for addding and deleting items to the list from UI.
+
 import React, {Component} from 'react';
 //import logo from './logo.svg';
 //import './App.css';
