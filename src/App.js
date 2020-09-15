@@ -41,7 +41,7 @@ deleteItem(id) {
     value : this.state.newItem.slice()
  };
 
-  // addding new item to the list and then clearning the input box
+  // addding new item to the list and then clearing the input box
   const list = [...this.state.list];
   list.push(newItem);
   this.setState({
