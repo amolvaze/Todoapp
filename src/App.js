@@ -12,6 +12,7 @@ class App extends React.Component {
       newItem: "" ,
       list: []
     };
+    this.addItem = this.addItem.bind(this);
   }
  
 // function to respond change input  
@@ -25,22 +26,24 @@ updateInput = (key, value) => {
    
 }
 
-// function to remove an item from the list.
-// deleteItem(id) {
-//   const list = [...this.state.list];
-//   const updatedList = list.fliter( item => item.id !== id );
-//   this.setState({list: updatedList});
-// }
-
-deleteItem = (id) => {
+//function to remove an item from the list.
+deleteItem = (id) =>{
   const list = [...this.state.list];
-  list.splice(id,1);
-  this.setState({list:list});
-  //console.log(id);
+  const updatedList = list.filter( item => item.id !== id );
+  this.setState({list: updatedList});
+
 }
 
+// deleteItem = (id) => {
+//   const list = [...this.state.list];
+//   list.splice(id,1);
+//   this.setState({list:list});
+//   //console.log(id);
+// }
+
 // function to add new item 
-  addItem = () => {
+  addItem() {
+    console.log(this.state.newItem.length);
   if(this.state.newItem === ''){
     alert("Please enter input: ");
     return;
@@ -55,7 +58,7 @@ deleteItem = (id) => {
   list.push(newItem);
   this.setState({
     list,
-    newItem: " "
+    newItem: ""
   });
 
   }
@@ -73,7 +76,7 @@ render() {
               onChange = {e => this.updateInput("newItem" , e.target.value)}
              />
              <button  
-               onClick = {  () => this.addItem() }
+               onClick = { ()=> {this.addItem()}}
 
              >
 
@@ -84,10 +87,7 @@ render() {
                     return(
                       <li key = {item.id}> 
                        {item.value}
-                       <button> 
-                      {this.deleteItem.bind(this,item.id)}
-                       DELETE
-                       </button>
+                      <button onClick = { ()=> {this.deleteItem(item.id)}}>DELETE</button>
                       </li>
                     )
                  })}
