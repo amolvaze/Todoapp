@@ -1,15 +1,13 @@
-// Code by Amol Vaze on 22 June 2020
-
-// Sample to do app for addding and deleting items to the list from UI.
+// Code Developed by Amol
 
 import React, {Component} from 'react';
 //import logo from './logo.svg';
 //import './App.css';
 
-class App extends Component() {
+class App extends React.Component {
  
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       newItem: "" ,
       list: []
@@ -17,7 +15,7 @@ class App extends Component() {
   }
  
 // function to respond change input  
-updateInput(key, value) {
+updateInput = (key, value) => {
    
   this.setState({
     
@@ -28,14 +26,25 @@ updateInput(key, value) {
 }
 
 // function to remove an item from the list.
-deleteItem(id) {
+// deleteItem(id) {
+//   const list = [...this.state.list];
+//   const updatedList = list.fliter( item => item.id !== id );
+//   this.setState({list: updatedList});
+// }
+
+deleteItem = (id) => {
   const list = [...this.state.list];
-  const updatedList = list.fliter( item => item.id !== id );
-  this.setState({list: updatedList});
+  list.splice(id,1);
+  this.setState({list:list});
+  //console.log(id);
 }
 
 // function to add new item 
-  addItem() {
+  addItem = () => {
+  if(this.state.newItem === ''){
+    alert("Please enter input: ");
+    return;
+  }
  const newItem = {
     id: 1 +  Math.random(),
     value : this.state.newItem.slice()
@@ -53,7 +62,7 @@ deleteItem(id) {
 
 render() {
   return (
-    <div className="App">
+    <div>
            <div>
              Please add your Item in list..
              <br />
@@ -76,8 +85,8 @@ render() {
                       <li key = {item.id}> 
                        {item.value}
                        <button> 
-                      onClick = { () => this.deleteItem(item.id) }
-                        X
+                      {this.deleteItem.bind(this,item.id)}
+                       DELETE
                        </button>
                       </li>
                     )
