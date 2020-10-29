@@ -43,7 +43,7 @@ deleteItem = (id) =>{
 
 // function to add new item 
   addItem() {
-    console.log(this.state.newItem.length);
+    //console.log(this.state.newItem.length);
   if(this.state.newItem === ''){
     alert("Please enter input: ");
     return;
